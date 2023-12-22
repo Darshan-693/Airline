@@ -1,0 +1,120 @@
+*{
+    margin:0;
+    padding: 0;
+    list-style: none;
+}
+nav{
+    position: fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    display: flex;
+    background-color: beige;
+    z-index: 1;
+}
+nav ul li{
+    padding: 5px;
+    display: inline-block;
+}
+.hello{
+    position:absolute;
+    right: 100px;
+    margin-top: 15px;
+}
+nav ul li a{
+    text-decoration: none;
+    color: green;
+    font-size: 25px;
+    margin-right: 15px;
+    margin-left: 15px;
+    font-weight: 600;
+}
+.mid{
+    width:100%;
+    height:500px;
+    background:rgba(0,0,0,0.3)url(/Assignment/start/img/bg.png);
+    text-align: center;
+    background-blend-mode: darken;
+}
+h2{
+    position:relative;
+    top:150px;
+    color:white;
+    font-size: 40px;
+}
+.search{
+    position:relative;
+    top:175px;
+    height: 40px;
+    width: 35%;
+}
+.bt{
+    position:relative;
+    top:175px;
+    border: none;
+    padding: 8px 10px;
+    background: transparent;
+}
+.midcities{
+    display: block;
+    width:100%;
+    height:500px;
+    text-align: center;
+}
+h1{
+    position:relative;
+    top:100px;
+}
+.profimg{
+    position:relative;
+    top:150px;
+    display: flex;
+    justify-content: center;
+}
+.profimg>a{
+    margin:50px;
+    padding:20px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 0 grey;
+}
+.profimg>a:hover{
+    box-shadow: 0 0 20px 0 grey;
+}
+.signup_modal{
+    display: inline-block;
+    padding: 33px;
+    position: absolute;
+    left:40%;
+    font-size: 25px;
+    box-shadow: 0 0 20px 0 black;
+    margin-top: 200px;
+    margin-bottom: 400px;
+    opacity:0;
+    z-index: -1;
+    transition:2s;
+    background-color: white;
+}
+.login-btn{
+    padding:10px;
+    margin: 10px;
+    background-color: rgb(89, 56, 160);
+    border-radius: 10%;
+    font-size: 20px;
+    color:white;
+}
+.obg{
+    position: fixed;
+    display: block;
+    top:0;
+    left:0;
+    background-color: aliceblue;
+    opacity: 0;
+    width:100%;
+    height:100vh;
+    z-index: -1;
+    transition: 1s;
+}
+.on{
+    opacity:1;
+    z-index: 5;
+}
