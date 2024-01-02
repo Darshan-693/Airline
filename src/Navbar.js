@@ -1,4 +1,4 @@
-const Navbar = ({changepage , nav_active, makeactive, funxtion,session , ticketdb})=>
+const Navbar = ({changepage , nav_active, makeactive, funxtion,session , ticketdb,logout})=>
 {
     
     return(

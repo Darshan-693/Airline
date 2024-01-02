@@ -1,39 +1,33 @@
-const Bangalore = ({session,changepage,funxtion})=>
-{
-    return(
-        <>
-            <table class="table table-dark">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-        </>
-    );
-
-}
+const Bangalore = ({ session, changepage, funxtion, x }) => {
+  return (
+    <>
+      <div className="tickinfo">
+        <h1>Bangalore</h1>
+        <div className="incontent">
+          <div className="p">
+          <p>
+            "Embark on a Journey to Bangalore: Experience the Perfect Blend of
+            Bustling Cityscapes and Timeless Traditions, All While Soaring on
+            Wings of Unparalleled Comfort and Service"
+          </p>
+          <h4>Destination : Kempegowda International Airport</h4>
+          <h5>Free cab services available</h5>
+          </div>
+          <button
+            className="bang_button"
+            onClick={() => (session === 1 ? changepage("book") : funxtion(1))}
+          >
+            Book Now
+          </button>
+          <img className="incontent_img" src={require("./images/footer.png")} />
+          <img
+            className="incontent_img"
+            src={require("./images/footer.png")}
+            style={{ left: "550px", top: "-360px" }}
+          />
+        </div>
+      </div>
+    </>
+  );
+};
 export default Bangalore;

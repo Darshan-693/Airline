@@ -32,6 +32,7 @@ const Ticket = ({changepage, emailid,funxtion,ticketdb})=>{
 
     return(
         <div className="tback">
+            <div className="tback_img"><img src={require('./images/back-aero.png')}/></div>
             <div className="tcontainer">
                 <form onSubmit={(e)=>confirm(e)}>
                     <label>Name:</label><br/>
@@ -58,6 +59,7 @@ const Ticket = ({changepage, emailid,funxtion,ticketdb})=>{
                     <input type="date" name="date"/>
                     <label>Number of seats:</label><br/>
                     <input type="number" name="seats" /><br/>
+
                     <label>Price:Rs. {1000}</label><br/>
 
                     <button type="submit">Confirm</button>

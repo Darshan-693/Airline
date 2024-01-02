@@ -1,43 +1,80 @@
-import { BrowserRouter } from 'react-router-dom';
+import { useState } from 'react';
 const Banner = ({funxtion,x,setsession , ok}) =>
 {
+    const [logininfo , loginfunc] = useState({
+        email:"",
+        password:''
+    })
+    const [reginfo , regfunc] = useState({
+        username:"",
+        email:"",
+        password:'',
+        cpassword:'',
+    })
     const login = (event)=>{
-        console.log("uhd");
         event.preventDefault();
-        fetch("http://localhost:3000/login", {
-        method: "POST",
-        body: JSON.stringify({
-            email: event.target.Email.value,
+        loginfunc({email:event.target.Email.value,
             password: event.target.Password.value
-        }),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
-    }).then(response => response.json()).then(data => {
-        if(data.auth===1)
+        })
+        if(logininfo.email.length *logininfo.password.length === 0)
         {
-            setsession(data.auth,data.email);
+            console.log('hello');
+            alert("Enter all details");
         }
         else{
-            funxtion(4);
+            fetch("http://localhost:3000/login", {
+                method: "POST",
+                body: JSON.stringify({
+                    email: event.target.Email.value,
+                    password: event.target.Password.value
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }).then(response => response.json()).then(data => { 
+                if(data.auth===1)
+                {
+                    setsession(data.auth,data.email);
+                }
+                else{
+                    alert("invalid email or wrong password")
+                }
+            });
         }
-    });
+        
     }
     const accept_details = (event)=>
     {
         event.preventDefault();
-        fetch("http://localhost:3000/register", {
-
-        method: "POST",
-        body: JSON.stringify({
-            name : event.target.Username.value,
-            email: event.target.Email.value,
-            password: event.target.Password.value
-        }),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
+        regfunc({
+            username:event.target.Username.value,
+            email:event.target.Email.value,
+            password: event.target.Password.value,
+            cpassword: event.target.CPassword.value
+        })
+        if(reginfo.email.length *reginfo.password.length *reginfo.cpassword.length*reginfo.username.length === 0)
+        {
+            console.log("hello")
+            alert("Enter all details");
         }
-    }).then(response => response.json()).then(data => console.log("a"));
+        else if(reginfo.cpassword!==reginfo.password)
+        {
+            alert("Passwords dont match");
+        }
+        else{
+            fetch("http://localhost:3000/register", {
+
+            method: "POST",
+            body: JSON.stringify({
+                name : event.target.Username.value,
+                email: event.target.Email.value,
+                password: event.target.Password.value
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(response => response.json()).then(data => funxtion(9));
+        }
     }
     return(
         <div className="banner">
@@ -45,13 +82,13 @@ const Banner = ({funxtion,x,setsession , ok}) =>
                 <div className={"obg " + (x===3?"on":"")}>
                     <div className={"signup_modal " + (x===3?"on":"")}>
                         <h1>Login Successful</h1>
-                        <button className='login-btn btn-mid' onClick={()=>ok('home')}>OK</button>
+                        <button className='login-btn btn-mid' onClick={()=>ok()}>OK</button>
                     </div>
                 </div>
-                <div className={"obg " + (x===4?"on":"")}>
-                    <div className={"signup_modal " + (x===4?"on":"")}>
-                        <h1>Invalid id or Wrong Password</h1>
-                        <button className='login-btn btn-mid' onClick={()=>funxtion(1)}>OK</button>
+                <div className={"obg " + (x===9?"on":"")}>
+                    <div className={"signup_modal " + (x===9?"on":"")}>
+                        <h1>Registered Successfully</h1>
+                        <button className='login-btn btn-mid' onClick={()=>funxtion(0)}>OK</button>
                     </div>
                 </div>
             <img className="plane1" src={require('./images/moving-plane.png')}/>
@@ -60,7 +97,7 @@ const Banner = ({funxtion,x,setsession , ok}) =>
             <div className={"obg " + (x===1?"on":"")}>
 
             <div className={"signup_modal " + (x===1?"on":"")}>
-                <button className="login-btn" width="50px" onClick={()=>funxtion(0)}>&times;</button>
+                <button className="login-btn cl" width="50px" onClick={()=>funxtion(0)}>&times;</button>
                 <h3 >Login using Username</h3>
 
                 <form action="/login" method='POST' onSubmit={(e)=>login(e)}>
@@ -80,7 +117,7 @@ const Banner = ({funxtion,x,setsession , ok}) =>
 
             <div className={"obg " + (x===2?"on":"")}>
             <div className={"signup_modal " + (x===2?"on":"")}>
-                <button className="login-btn" width="50px" onClick={()=>(funxtion(0))}>&times;</button>
+                <button className="login-btn cl" width="50px" onClick={()=>(funxtion(0))}>&times;</button>
                 <h3 >Enter Your Details</h3>
                 <form action="/register" method="POST" onSubmit={(e)=>accept_details(e)}>
                     <label>First Name</label><br/>
@@ -91,8 +128,10 @@ const Banner = ({funxtion,x,setsession , ok}) =>
 
                     <label>Password</label><br/>
                     <input type="password" name="Password" /><br/>
+                    <label>Confirm Password</label><br/>
+                    <input type="password" name="CPassword" /><br/>
 
-                    <BrowserRouter to={"/submit"}><button className="login-btn" type="submit">Sign-up</button><br/></BrowserRouter>
+                    <button className="login-btn" type="submit">Sign-up</button>
                 </form>
                 
                 </div>
